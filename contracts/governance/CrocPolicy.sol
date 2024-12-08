@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3                                                    
-pragma solidity 0.8.19;
+pragma solidity 0.8.28;
 
 import '../libraries/ProtocolCmd.sol';
 import '../interfaces/ICrocMinion.sol';
@@ -120,9 +120,9 @@ contract CrocPolicy is ICrocMaster {
         opsAuthority_ = ops;
         treasuryAuthority_ = treasury;
         emergencyAuthority_ = emergency;  
-        // Timelock(payable(treasury)).acceptAdmin();
-        // Timelock(payable(ops)).acceptAdmin();
-        // Timelock(payable(emergency)).acceptAdmin();
+        Timelock(payable(treasury)).acceptAdmin();
+        Timelock(payable(ops)).acceptAdmin();
+        Timelock(payable(emergency)).acceptAdmin();
     }
 
     /* @notice Resolution from the ops authority which calls protocolCmd() on the 
